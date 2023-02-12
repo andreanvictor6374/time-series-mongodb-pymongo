@@ -11,11 +11,14 @@ def output_chart(days_ago=1600, days_end=0):
     client = db_client.get_db_client()
     db = client.business
     collection = db.rating_over_time
-    delta = datetime.datetime.now() - datetime.timedelta(days=days_ago)
+    # delta = datetime.datetime.now() - datetime.timedelta(days=days_ago)
+    delta = datetime.datetime(2011,2,7)
     match_filter_dict =  {"$gte":delta}
     if isinstance(days_end, int):
-        delta2 = datetime.datetime.now() - datetime.timedelta(days=days_end)
+        # delta2 = datetime.datetime.now() - datetime.timedelta(days=days_end)
+        delta2 = datetime.datetime(2012,12,1)
         match_filter_dict =  {**match_filter_dict, "$lte":delta2}
+        print(match_filter_dict)
     dataset = list(
         collection.aggregate([ 
             {
